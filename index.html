@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ewuradjoa Badji | Media Producer</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #ff4d94;
+            --light-pink: #ff8ab8;
+            --pastel-pink: #ffd6e7;
+            --pastel-mint: #b8ffd9;
+            --pastel-lavender: #e0d6ff;
+            --pastel-gray: #f0f0f5;
+            --dark-text: #1a1a2e;
+            --light-text: #4a4a6e;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            --glow-intensity: 20px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-gray) 0%, #fff 50%, var(--pastel-pink) 100%);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 77, 148, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(184, 255, 217, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(224, 214, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 550;
+        }
+        
+        /* Enhanced Liquid Glassmorphism */
+        .liquid-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                var(--glass-shadow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .liquid-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: left 0.7s ease;
+            z-index: 1;
+        }
+        
+        .liquid-glass:hover::before {
+            left: 100%;
+        }
+        
+        .liquid-glass:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(31, 38, 135, 0.25),
+                0 0 40px rgba(255, 77, 148, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Glow Effects */
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% + var(--glow-intensity));
+            height: calc(100% + var(--glow-intensity));
+            background: radial-gradient(
+                circle,
+                rgba(255, 77, 148, 0.3) 0%,
+                rgba(184, 255, 217, 0.2) 30%,
+                transparent 70%
+            );
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 77, 148, 0.5);
+        }
+        
+        /* Page Transition Overlay - UPDATED FOR FULLSCREEN */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--pastel-mint) 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .transition-overlay.active {
+            transform: translateY(0);
+        }
+        
+        /* Fullscreen video container */
+        .transition-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .transition-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .transition-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+        
+        /* Navigation - Two Column Layout */
+        .navbar-container {
+            position: fixed;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .liquid-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border-radius: 60px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                var(--glass-shadow),
+                0 0 40px rgba(255, 77, 148, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            padding: 25px 60px;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            min-height: 100px;
+        }
+        
+        .nav-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-column.left {
+            justify-content: flex-end;
+            padding-right: 20px;
+        }
+        
+        .nav-column.right {
+            justify-content: flex-start;
+            padding-left: 20px;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            color: var(--dark-text);
+            font-weight: 500;
+            padding: 12px 28px;
+            border-radius: 40px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 1.05rem;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-pink), var(--light-pink));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 77, 148, 0.3);
+        }
+        
+        .nav-link i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 140px;
+        }
+        
+        .hero-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.7);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 77, 148, 0.15) 0%, rgba(184, 255, 217, 0.1) 100%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            z-index: 2;
+        }
+        
+        .producer-image-container {
+            width: 1500px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        
+        .producer-image-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+        }
+        
+        .producer-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(255, 77, 148, 0.3);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+        
+        /* Page Content */
+        .page-content {
+            min-height: 100vh;
+            padding-top: 180px;
+            padding-bottom: 100px;
+        }
+        
+        .section-title {
+            color: var(--primary-pink);
+            font-size: 3rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary-pink), var(--pastel-mint));
+            bottom: -15px;
+            left: 10%;
+            border-radius: 3px;
+            box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+        }
+
+        /* Handwritten tagline positioned beside image */
+        .tagline-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .producer-image-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .producer-image-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+        }
+        
+        .producer-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(255, 77, 148, 0.3);
+        }
+        
+        /* Handwritten animated text */
+        .handwritten-tagline {
+            padding-top: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            white-space: nowrap;
+            text-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(255, 77, 148, 0.5);
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+            animation: fadeInScale 0.5s ease 0.5s forwards;
+        }
+        
+        .handwritten-tagline svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .handwritten-tagline .text-path {
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawText 3s ease-in-out 0.8s forwards;
+            filter: drop-shadow(0 2px 4px rgba(255, 77, 148, 0.3));
+        }
+        
+        .handwritten-text {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 0.1s ease forwards;
+        }
+        
+        .handwritten-text.char-0 { animation-delay: 0.9s; }
+        .handwritten-text.char-1 { animation-delay: 1.0s; }
+        .handwritten-text.char-2 { animation-delay: 1.1s; }
+        .handwritten-text.char-3 { animation-delay: 1.2s; }
+        .handwritten-text.char-4 { animation-delay: 1.3s; }
+        .handwritten-text.char-5 { animation-delay: 1.4s; }
+        .handwritten-text.char-6 { animation-delay: 1.5s; }
+        .handwritten-text.char-7 { animation-delay: 1.6s; }
+        .handwritten-text.char-8 { animation-delay: 1.7s; }
+        .handwritten-text.char-9 { animation-delay: 1.8s; }
+        .handwritten-text.char-10 { animation-delay: 1.9s; }
+        .handwritten-text.char-11 { animation-delay: 2.0s; }
+        .handwritten-text.char-12 { animation-delay: 2.1s; }
+        .handwritten-text.char-13 { animation-delay: 2.2s; }
+        .handwritten-text.char-14 { animation-delay: 2.3s; }
+        .handwritten-text.char-15 { animation-delay: 2.4s; }
+        .handwritten-text.char-16 { animation-delay: 2.5s; }
+        .handwritten-text.char-17 { animation-delay: 2.6s; }
+        .handwritten-text.char-18 { animation-delay: 2.7s; }
+        .handwritten-text.char-19 { animation-delay: 2.8s; }
+        .handwritten-text.char-20 { animation-delay: 2.9s; }
+        .handwritten-text.char-21 { animation-delay: 3.0s; }
+        .handwritten-text.char-22 { animation-delay: 3.1s; }
+        .handwritten-text.char-23 { animation-delay: 3.2s; }
+        .handwritten-text.char-24 { animation-delay: 3.3s; }
+        .handwritten-text.char-25 { animation-delay: 3.4s; }
+        
+        /* Underline effect */
+        .handwritten-tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-pink), var(--pastel-mint));
+            animation: drawUnderline 1s ease 3.5s forwards;
+        }
+        
+        /* Name styling */
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0 0 0;
+            color: white;
+            text-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(255, 77, 148, 0.5);
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+            padding-bottom: 3rem;
+        }    
+
+        /* Work Gallery */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .work-item {
+            height: 400px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .work-item:hover img {
+            transform: scale(1.15);
+        }
+        
+        .work-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+            padding: 40px 30px 30px;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .work-item:hover .work-overlay {
+            transform: translateY(0);
+        }
+        
+        /* About Page */
+        .about-content {
+            line-height: 1.9;
+            font-size: 1.15rem;
+        }
+        
+        .skills-container {
+            margin-top: 30px;
+        }
+        
+        .skill-item {
+            margin-bottom: 30px;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .skill-bar-container {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-pink), var(--light-pink));
+            border-radius: 10px;
+            width: 0;
+            transition: width 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        /* Contact Page */
+        .contact-form .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
+            padding: 16px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 4px rgba(255, 77, 148, 0.2);
+        }
+        
+        .contact-form textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--pastel-mint));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 77, 148, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 60px 0 40px;
+            margin-top: 100px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-pink), var(--light-pink));
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 77, 148, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes drawText {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes drawUnderline {
+            to {
+                width: 100%;
+            }
+        }
+        
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(2deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .tagline-container {
+                gap: 30px;
+            }
+            
+            .handwritten-tagline {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: 3.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tagline-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .producer-image-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .handwritten-tagline {
+                font-size: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .transition-text {
+                font-size: 1.2rem;
+                padding: 15px 25px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .handwritten-tagline {
+                font-size: 1.6rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .transition-text {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+        
+        /* Page Management */
+        .page {
+            display: none;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .liquid-nav {
+                padding: 25px 40px;
+                gap: 30px;
+            }
+            
+            .hero-title {
+                font-size: 3.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.9rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .navbar-container {
+                top: 20px;
+            }
+            
+            .liquid-nav {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 25px 30px;
+                min-height: auto;
+            }
+            
+            .nav-column.left, .nav-column.right {
+                justify-content: center;
+                padding: 0;
+            }
+            
+            .navbar-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.7rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 180px;
+            }
+            
+            .producer-image-container {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-content {
+                padding-top: 160px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .liquid-nav {
+                padding: 20px;
+                border-radius: 40px;
+            }
+            
+            .nav-link {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Transition Overlay - UPDATED FOR FULLSCREEN -->
+    <div class="transition-overlay" id="transitionOverlay">
+        <div class="transition-video-container">
+            <!-- Using your video file -->
+            <video class="transition-video" autoplay muted loop id="transitionVideo">
+                <source src="MODULAR-1-03.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="transition-text">Loading Creative Vision...</div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navbar-container">
+        <nav class="liquid-nav">
+            <div class="nav-column left">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="home">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="work">
+                            <i class="fas fa-film"></i> Work
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-column right">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="about">
+                            <i class="fas fa-user"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="contact">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Home Page -->
+    <div class="page active" id="home-page">
+        <section class="hero-section">
+            <video class="hero-bg-video" autoplay muted loop playsinline>
+                <source src="Pouring Water Against a Pastel Sky During Daytime 72001457 Stock Video at Vecteezy.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-overlay"></div>
+            
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="hero-content">
+                            <div class="tagline-container">
+                                <div class="handwritten-tagline" id="handwrittenText" loop>
+                                    <!-- Text will be injected by JavaScript -->
+                                </div>
+                                <div class="producer-image-container glow-effect">
+                                        <img class="producer-image" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Ewuradjoa Badji - Media Producer">
+                                </div>
+                            </div>
+                            
+                            <h1 class="hero-title text-glow">Ewuradjoa Badji</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Work Page -->
+    <div class="page" id="work-page">
+        <div class="container page-content">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Creative Portfolio</h2>
+                    <p class="lead fs-4" style="color: var(--light-text);">A collection of my most impactful media productions</p>
+                </div>
+            </div>
+            
+            <div class="work-grid">
+                <!-- Work items remain the same -->
+                <div class="work-item liquid-glass glow-effect">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Urban Wildlife Documentary">
+                    <div class="work-overlay">
+                        <h3 class="text-white mb-2">Urban Wilderness</h3>
+                        <p class="text-light">Feature documentary exploring wildlife adaptation in urban environments</p>
+                        <div class="mt-3">
+                            <span class="badge liquid-glass text-white border-0 me-2" style="background: rgba(255, 77, 148, 0.8);">2023</span>
+                            <span class="badge liquid-glass text-white border-0" style="background: rgba(26, 26, 46, 0.8);">Documentary</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item liquid-glass glow-effect">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Midnight Echoes Music Video">
+                    <div class="work-overlay">
+                        <h3 class="text-white mb-2">Midnight Echoes</h3>
+                        <p class="text-light">Cinematic music video for indie band's breakthrough single</p>
+                        <div class="mt-3">
+                            <span class="badge liquid-glass text-white border-0 me-2" style="background: rgba(255, 77, 148, 0.8);">2023</span>
+                            <span class="badge liquid-glass text-white border-0" style="background: rgba(26, 26, 46, 0.8);">Music Video</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item liquid-glass glow-effect">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by-wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Tech Brand Commercial">
+                    <div class="work-overlay">
+                        <h3 class="text-white mb-2">NexTech Vision</h3>
+                        <p class="text-light">Global advertising campaign for innovative tech company</p>
+                        <div class="mt-3">
+                            <span class="badge liquid-glass text-white border-0 me-2" style="background: rgba(255, 77, 148, 0.8);">2022</span>
+                            <span class="badge liquid-glass text-white border-0" style="background: rgba(26, 26, 46, 0.8);">Commercial</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item liquid-glass glow-effect">
+                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="The Last Light Short Film">
+                    <div class="work-overlay">
+                        <h3 class="text-white mb-2">The Last Light</h3>
+                        <p class="text-light">Award-winning short film about human connection in dystopian future</p>
+                        <div class="mt-3">
+                            <span class="badge liquid-glass text-white border-0 me-2" style="background: rgba(255, 77, 148, 0.8);">2022</span>
+                            <span class="badge liquid-glass text-white border-0" style="background: rgba(26, 26, 46, 0.8);">Short Film</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item liquid-glass glow-effect">
+                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Corporate Annual Report">
+                    <div class="work-overlay">
+                        <h3 class="text-white mb-2">Annual Vision Report</h3>
+                        <p class="text-light">Immersive corporate video for Fortune 500 company's annual review</p>
+                        <div class="mt-3">
+                            <span class="badge liquid-glass text-white border-0 me-2" style="background: rgba(255, 77, 148, 0.8);">2021</span>
+                            <span class="badge liquid-glass text-white border-0" style="background: rgba(26, 26, 46, 0.8);">Corporate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-item liquid-glass glow-effect">
+                    <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Film Festival Coverage">
+                    <div class="work-overlay">
+                        <h3 class="text-white mb-2">Global Film Festival</h3>
+                        <p class="text-light">Comprehensive coverage and highlights from international film festival</p>
+                        <div class="mt-3">
+                            <span class="badge liquid-glass text-white border-0 me-2" style="background: rgba(255, 77, 148, 0.8);">2021</span>
+                            <span class="badge liquid-glass text-white border-0" style="background: rgba(26, 26, 46, 0.8);">Event Coverage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- About Page -->
+    <div class="page" id="about-page">
+        <div class="container page-content">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Creative Journey</h2>
+                    <p class="lead fs-4" style="color: var(--light-text);">Crafting stories that resonate and inspire</p>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="liquid-glass glow-effect p-5 h-100">
+                        <h3 class="mb-4">My Story</h3>
+                        <div class="about-content">
+                            <p>Hello! I'm Ewuradjoa Badji, a passionate media producer with over 8 years of experience in visual storytelling. My journey began in film school, where I discovered the power of combining technical skill with emotional narrative.</p>
+                            <p class="mt-3">I believe that every project is an opportunity to create something meaningful—whether it's a 30-second commercial or a feature-length documentary. My approach combines meticulous planning with spontaneous creativity, allowing for both structure and magic in the production process.</p>
+                            <p class="mt-3">Throughout my career, I've had the privilege of working with diverse clients and teams, from independent artists to global corporations. Each collaboration has taught me that the best media production happens at the intersection of vision, technology, and human connection.</p>
+                            <p class="mt-3">When I'm not on set or in the editing suite, I'm exploring new storytelling technologies, mentoring emerging filmmakers, and seeking inspiration in the world around me.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="liquid-glass glow-effect p-5 h-100">
+                        <h3 class="mb-4">Skills & Expertise</h3>
+                        <div class="skills-container">
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span>Video Production</span>
+                                    <span>96%</span>
+                                </div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" data-width="96"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span>Cinematography</span>
+                                    <span>94%</span>
+                                </div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" data-width="94"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span>Video Editing</span>
+                                    <span>98%</span>
+                                </div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" data-width="98"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span>Sound Design</span>
+                                    <span>89%</span>
+                                </div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" data-width="89"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span>Storyboarding</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" data-width="92"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span>Visual Effects</span>
+                                    <span>87%</span>
+                                </div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar" data-width="87"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <h4 class="mb-3">Awards & Recognition</h4>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-trophy me-3" style="color: var(--primary-pink); font-size: 1.5rem;"></i>
+                                        <div>
+                                            <h6 class="mb-0">Best Documentary 2022</h6>
+                                            <small>International Film Festival</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-award me-3" style="color: var(--primary-pink); font-size: 1.5rem;"></i>
+                                        <div>
+                                            <h6 class="mb-0">Creative Excellence Award</h6>
+                                            <small>Media Production Guild</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-star me-3" style="color: var(--primary-pink); font-size: 1.5rem;"></i>
+                                        <div>
+                                            <h6 class="mb-0">Emerging Talent Award</h6>
+                                            <small>Global Media Awards</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-film me-3" style="color: var(--primary-pink); font-size: 1.5rem;"></i>
+                                        <div>
+                                            <h6 class="mb-0">Best Short Film 2021</h6>
+                                            <small>Indie Film Festival</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Page -->
+    <div class="page" id="contact-page">
+        <div class="container page-content">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Let's Create Together</h2>
+                    <p class="lead fs-4" style="color: var(--light-text);">Get in touch to discuss your next project</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="liquid-glass glow-effect p-5">
+                        <h3 class="mb-4">Send a Message</h3>
+                        <form class="contact-form" id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control" placeholder="Your Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <input type="email" class="form-control" placeholder="Your Email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <input type="text" class="form-control" placeholder="Project Type" required>
+                            </div>
+                            <div class="mb-4">
+                                <textarea class="form-control" placeholder="Tell me about your project, timeline, and vision..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-lg text-white border-0 liquid-glass glow-effect" style="background: linear-gradient(135deg, var(--primary-pink), var(--light-pink)); padding: 16px 40px; font-size: 1.1rem;">
+                                <i class="fas fa-paper-plane me-2"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="liquid-glass glow-effect p-5 h-100">
+                        <h3 class="mb-4">Contact Info</h3>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Location</h5>
+                                <p class="mb-0">Los Angeles, California</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p class="mb-0">+1 (310) 555-7890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p class="mb-0">alex@morganmedia.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Availability</h5>
+                                <p class="mb-0">Mon-Fri: 9AM - 7PM PST</p>
+                                <small class="text-muted">Weekends by appointment</small>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <h5 class="mb-3">Response Time</h5>
+                            <p>I typically respond to inquiries within 24 hours. For urgent projects, please indicate in your message.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                    <h4 class="mb-2">Ewuradjoa Badji</h4>
+                    <p class="mb-0" style="color: var(--light-text);">Media Producer & Visual Storyteller</p>
+                </div>
+                
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-vimeo-v"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 text-center text-lg-end">
+                    <p class="mb-0" style="color: var(--light-text);">&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</p>
+                    <small style="color: var(--light-text);">From Concepts to Goosebumps™</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // DOM elements
+        const transitionOverlay = document.getElementById('transitionOverlay');
+        const transitionVideo = document.getElementById('transitionVideo');
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const contactForm = document.getElementById('contactForm');
+        
+        // Current active page
+        let currentPage = 'home';
+        
+        // Enhanced liquid glass effect on hover
+        function enhanceGlassEffects() {
+            const glassElements = document.querySelectorAll('.liquid-glass');
+            
+            glassElements.forEach(element => {
+                // Add random shimmer delay
+                const shimmer = element.querySelector('.liquid-glass::before');
+                if (shimmer) {
+                    shimmer.style.transitionDelay = `${Math.random() * 0.5}s`;
+                }
+                
+                // Add mouse move parallax effect
+                element.addEventListener('mousemove', (e) => {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateY = (x - centerX) / 25;
+                    const rotateX = (centerY - y) / 25;
+                    
+                    element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                });
+            });
+        }
+        
+        // Function to switch pages with enhanced transition - UPDATED FOR LONGER DURATION
+        function switchPage(pageId) {
+            if (pageId === currentPage) return;
+            
+            // Show transition overlay with enhanced animation
+            transitionOverlay.classList.add('active');
+            
+            // Reset and play transition video
+            transitionVideo.currentTime = 0;
+            const playPromise = transitionVideo.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Video playback failed:", error);
+                });
+            }
+            
+            // Enhanced page transition with multiple effects - INCREASED DURATION
+            setTimeout(() => {
+                // Hide current page with fade out
+                const currentPageElement = document.getElementById(`${currentPage}-page`);
+                currentPageElement.style.opacity = '0';
+                currentPageElement.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    currentPageElement.classList.remove('active');
+                    
+                    // Show new page
+                    const newPageElement = document.getElementById(`${pageId}-page`);
+                    newPageElement.classList.add('active');
+                    
+                    // Reset and animate in new page
+                    setTimeout(() => {
+                        newPageElement.style.opacity = '1';
+                        newPageElement.style.transform = 'translateY(0)';
+                        
+                        // Update current page
+                        currentPage = pageId;
+                        
+                        // Update active nav link
+                        navLinks.forEach(link => {
+                            if (link.getAttribute('data-page') === pageId) {
+                                link.classList.add('active');
+                            } else {
+                                link.classList.remove('active');
+                            }
+                        });
+                        
+                        // Animate skill bars on about page
+                        if (pageId === 'about') {
+                            setTimeout(() => {
+                                animateSkillBars();
+                            }, 300);
+                        }
+                        
+                        // Scroll to top smoothly
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Re-enhance glass effects for new page
+                        setTimeout(() => {
+                            enhanceGlassEffects();
+                        }, 100);
+                        
+                        // Hide transition overlay - INCREASED DELAY
+                        setTimeout(() => {
+                            transitionOverlay.classList.remove('active');
+                        }, 1200); // Increased from 800ms
+                    }, 50);
+                }, 300);
+            }, 1500); // Increased from 1000ms
+        }
+        
+        // Function to animate skill bars with progressive animation
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            
+            skillBars.forEach((bar, index) => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = '0';
+                
+                // Stagger the animations
+                setTimeout(() => {
+                    bar.style.width = `${width}%`;
+                    
+                    // Add completion effect
+                    setTimeout(() => {
+                        bar.style.boxShadow = '0 0 20px rgba(255, 77, 148, 0.5)';
+                        setTimeout(() => {
+                            bar.style.boxShadow = 'none';
+                        }, 300);
+                    }, 1500);
+                }, index * 200);
+            });
+        }
+        
+        // Function to handle work item interactions
+        function setupWorkItems() {
+            const workItems = document.querySelectorAll('.work-item');
+            
+            workItems.forEach(item => {
+                // Click effect
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    this.style.boxShadow = '0 0 40px rgba(255, 77, 148, 0.6)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.boxShadow = '';
+                    }, 300);
+                    
+                    // In a real site, this would open a modal or detail view
+                    const title = this.querySelector('h3').textContent;
+                    console.log(`Opening project: ${title}`);
+                });
+                
+                // Enhanced hover effect
+                item.addEventListener('mouseenter', function() {
+                    const overlay = this.querySelector('.work-overlay');
+                    if (overlay) {
+                        overlay.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const overlay = this.querySelector('.work-overlay');
+                    if (overlay) {
+                        overlay.style.transform = 'translateY(100%)';
+                    }
+                });
+            });
+        }
+        
+        // Form handling with enhanced feedback
+        function setupContactForm() {
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form button
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Show success message
+                        const successAlert = document.createElement('div');
+                        successAlert.className = 'alert liquid-glass text-white border-0 mt-4';
+                        successAlert.style.background = 'linear-gradient(135deg, #4CAF50, #8BC34A)';
+                        successAlert.innerHTML = `
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle me-3 fs-4"></i>
+                                <div>
+                                    <h5 class="mb-1">Message Sent Successfully!</h5>
+                                    <p class="mb-0">Thank you for your message. I'll get back to you within 24 hours.</p>
+                                </div>
+                            </div>
+                        `;
+                        
+                        this.parentNode.insertBefore(successAlert, this.nextSibling);
+                        
+                        // Reset form
+                        this.reset();
+                        
+                        // Reset button
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Remove success message after 5 seconds
+                        setTimeout(() => {
+                            successAlert.style.opacity = '0';
+                            successAlert.style.transform = 'translateY(-10px)';
+                            setTimeout(() => {
+                                if (successAlert.parentNode) {
+                                    successAlert.parentNode.removeChild(successAlert);
+                                }
+                            }, 300);
+                        }, 5000);
+                    }, 1500);
+                });
+            }
+        }
+        
+        // Function to create handwritten animated text
+        function createHandwrittenText(text, containerId) {
+            const container = document.getElementById(containerId);
+            const words = text.split(' ');
+            
+            // Create text with individual character spans
+            let charIndex = 0;
+            words.forEach((word, wordIndex) => {
+                for (let i = 0; i < word.length; i++) {
+                    const span = document.createElement('span');
+                    span.className = `handwritten-text char-${charIndex}`;
+                    span.textContent = word[i];
+                    container.appendChild(span);
+                    charIndex++;
+                }
+                
+                // Add space between words
+                if (wordIndex < words.length - 1) {
+                    const space = document.createElement('span');
+                    space.className = `handwritten-text char-${charIndex}`;
+                    space.innerHTML = '&nbsp;';
+                    container.appendChild(space);
+                    charIndex++;
+                }
+            });
+            
+            // Add SVG underline animation
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 400 80');
+            svg.style.cssText = 'position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 110%; height: 30px;';
+            
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('class', 'text-path');
+            path.setAttribute('d', 'M 10 40 Q 100 20, 200 40 T 390 40');
+            
+            svg.appendChild(path);
+            container.appendChild(svg);
+        }
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial animations
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero-title');
+                const heroSubtitle = document.querySelector('.hero-subtitle');
+                
+                if (heroTitle) heroTitle.style.opacity = '1';
+                if (heroSubtitle) heroSubtitle.style.opacity = '1';
+            }, 500);
+            
+            // Set up navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            });
+            
+            // Set up work items
+            setupWorkItems();
+            
+            // Set up contact form
+            setupContactForm();
+            
+            // Enhance glass effects
+            enhanceGlassEffects();
+            
+            // Animate skill bars if on about page initially
+            if (currentPage === 'about') {
+                setTimeout(() => {
+                    animateSkillBars();
+                }, 800);
+            }
+            
+            // Create handwritten text
+            createHandwrittenText('From Concepts to Goosebumps', 'handwrittenText');
+            
+            // Add subtle background animation
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                document.querySelector('body').style.backgroundPosition = 
+                    `${x * 100}% ${y * 100}%`;
+            });
+        });
+        
+        // Handle browser navigation
+        window.addEventListener('popstate', function() {
+            // In a more complex SPA, you would parse the URL and switch to the correct page
+            // For this demo, we'll ensure home is active if no page matches
+            if (!document.getElementById(`${currentPage}-page`).classList.contains('active')) {
+                switchPage('home');
+            }
+        });
+    </script>
+</body>
+</html>
