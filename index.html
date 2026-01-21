@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ewuradjoa Badji | Media Producer</title>
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,23 +32,15 @@
             box-sizing: border-box;
         }
         
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-        }
-        
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--pastel-gray) 0%, #fff 50%, var(--pastel-pink) 100%);
             color: var(--dark-text);
+            overflow-x: hidden;
             min-height: 100vh;
-            min-height: -webkit-fill-available;
             position: relative;
         }
         
-        /* FIX: Improved mobile background with less intensive effects */
         body::before {
             content: '';
             position: fixed;
@@ -61,15 +53,6 @@
                 radial-gradient(circle at 80% 20%, rgba(184, 255, 217, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(224, 214, 255, 0.1) 0%, transparent 50%);
             z-index: -1;
-        }
-        
-        /* FIX: Mobile-specific background for better performance */
-        @media (max-width: 768px) {
-            body::before {
-                background: 
-                    radial-gradient(circle at 20% 80%, rgba(255, 77, 148, 0.1) 0%, transparent 60%),
-                    radial-gradient(circle at 80% 20%, rgba(184, 255, 217, 0.1) 0%, transparent 60%);
-            }
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -123,7 +106,40 @@
             border-color: rgba(255, 255, 255, 0.4);
         }
         
-        /* FIX: Page Transition Overlay - UPDATED FOR MOBILE FULLSCREEN */
+        /* Glow Effects */
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% + var(--glow-intensity));
+            height: calc(100% + var(--glow-intensity));
+            background: radial-gradient(
+                circle,
+                rgba(255, 77, 148, 0.3) 0%,
+                rgba(184, 255, 217, 0.2) 30%,
+                transparent 70%
+            );
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 77, 148, 0.5);
+        }
+        
+        /* Page Transition Overlay - UPDATED FOR FULLSCREEN */
         .transition-overlay {
             position: fixed;
             top: 0;
@@ -145,7 +161,7 @@
             transform: translateY(0);
         }
         
-        /* FIX: Fullscreen video container - IMPROVED FOR MOBILE */
+        /* Fullscreen video container */
         .transition-video-container {
             position: absolute;
             top: 0;
@@ -160,14 +176,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* FIX: Ensure video plays properly on mobile */
-            -webkit-transform: translateZ(0);
+             -webkit-transform: translateZ(0);
             transform: translateZ(0);
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
         }
-        
-        /* FIX: Video fallback for mobile autoplay issues */
+
+         /* FIX: Video fallback for mobile autoplay issues */
         .transition-video-fallback {
             position: absolute;
             top: 0;
@@ -186,10 +201,6 @@
             transition: opacity 0.5s ease;
         }
         
-        .transition-video-fallback.active {
-            opacity: 1;
-        }
-        
         .transition-text {
             color: white;
             font-size: 1.5rem;
@@ -204,15 +215,6 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             margin-top: 20px;
-        }
-        
-        /* FIX: Mobile responsive text */
-        @media (max-width: 768px) {
-            .transition-text {
-                font-size: 1.2rem;
-                padding: 15px 25px;
-                margin-top: 10px;
-            }
         }
         
         /* Navigation - Two Column Layout */
@@ -311,7 +313,6 @@
         /* Hero Section */
         .hero-section {
             height: 100vh;
-            height: -webkit-fill-available; /* For mobile browsers */
             display: flex;
             align-items: center;
             position: relative;
@@ -319,7 +320,6 @@
             padding-top: 140px;
         }
         
-        /* FIX: Hero video - disabled on mobile for performance */
         .hero-bg-video {
             position: absolute;
             top: 0;
@@ -329,13 +329,6 @@
             object-fit: cover;
             z-index: -2;
             filter: brightness(0.7);
-        }
-        
-        /* FIX: Hide video on mobile for better performance */
-        @media (max-width: 768px) {
-            .hero-bg-video {
-                display: none;
-            }
         }
         
         .hero-overlay {
@@ -348,13 +341,6 @@
             z-index: -1;
         }
         
-        /* FIX: Mobile-specific hero background */
-        @media (max-width: 768px) {
-            .hero-overlay {
-                background: linear-gradient(135deg, rgba(255, 77, 148, 0.2) 0%, rgba(184, 255, 217, 0.15) 100%);
-            }
-        }
-        
         .hero-content {
             text-align: center;
             color: white;
@@ -362,6 +348,80 @@
             z-index: 2;
         }
         
+        .producer-image-container {
+            width: 1500px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        
+        .producer-image-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+        }
+        
+        .producer-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(255, 77, 148, 0.3);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+        
+        /* Page Content */
+        .page-content {
+            min-height: 100vh;
+            padding-top: 180px;
+            padding-bottom: 100px;
+        }
+        
+        .section-title {
+            color: var(--primary-pink);
+            font-size: 3rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary-pink), var(--pastel-mint));
+            bottom: -15px;
+            left: 10%;
+            border-radius: 3px;
+            box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+        }
+
+        /* Handwritten tagline positioned beside image */
         .tagline-container {
             position: relative;
             display: flex;
@@ -469,7 +529,7 @@
         .handwritten-text.char-23 { animation-delay: 3.2s; }
         .handwritten-text.char-24 { animation-delay: 3.3s; }
         .handwritten-text.char-25 { animation-delay: 3.4s; }
-        .handwritten-text.char-26 { animation-delay: 3.5s; }
+        .handwritten-text.char-25 { animation-delay: 3.5s; }
         
         /* Underline effect */
         .handwritten-tagline::after {
@@ -496,65 +556,8 @@
             animation: fadeInUp 1s ease 0.3s forwards;
             opacity: 0;
             padding-bottom: 3rem;
-        }
-        
-        /* Responsive adjustments for handwritten text */
-        @media (max-width: 1200px) {
-            .handwritten-tagline {
-                font-size: 3rem;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .handwritten-tagline {
-                font-size: 2.5rem;
-                white-space: normal;
-            }
-            
-            .hero-title {
-                font-size: 2.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .handwritten-tagline {
-                font-size: 2rem;
-                white-space: normal;
-                padding-top: 1rem;
-            }
-            
-            .hero-title {
-                font-size: 2.2rem;
-                padding-bottom: 2rem;
-            }
-            
-            .tagline-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .producer-image-container {
-                width: 150px;
-                height: 150px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .handwritten-tagline {
-                font-size: 1.6rem;
-            }
-            
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .producer-image-container {
-                width: 130px;
-                height: 130px;
-            }
-        }
-        
-        /* Rest of your existing CSS styles remain the same... */
+        }    
+
         /* Work Gallery */
         .work-grid {
             display: grid;
@@ -597,55 +600,140 @@
             transform: translateY(0);
         }
         
-        /* Page Content */
-        .page-content {
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            padding-top: 180px;
-            padding-bottom: 100px;
+        /* About Page */
+        .about-content {
+            line-height: 1.9;
+            font-size: 1.15rem;
         }
         
-        .section-title {
-            color: var(--primary-pink);
-            font-size: 3rem;
-            margin-bottom: 60px;
+        .skills-container {
+            margin-top: 30px;
+        }
+        
+        .skill-item {
+            margin-bottom: 30px;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .skill-bar-container {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
             position: relative;
-            display: inline-block;
         }
         
-        .section-title::after {
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-pink), var(--light-pink));
+            border-radius: 10px;
+            width: 0;
+            transition: width 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-bar::after {
             content: '';
             position: absolute;
-            width: 80%;
-            height: 6px;
-            background: linear-gradient(to right, var(--primary-pink), var(--pastel-mint));
-            bottom: -15px;
-            left: 10%;
-            border-radius: 3px;
-            box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
         }
         
-        /* Responsive design for section titles */
-        @media (max-width: 768px) {
-            .page-content {
-                padding-top: 160px;
-                padding-bottom: 80px;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
+        /* Contact Page */
+        .contact-form .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
+            padding: 16px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
         }
         
-        @media (max-width: 576px) {
-            .page-content {
-                padding-top: 140px;
-                padding-bottom: 60px;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
+        .contact-form .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 4px rgba(255, 77, 148, 0.2);
+        }
+        
+        .contact-form textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--pastel-mint));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 77, 148, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 60px 0 40px;
+            margin-top: 100px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-pink), var(--light-pink));
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 77, 148, 0.4);
         }
         
         /* Animations */
@@ -719,6 +807,61 @@
             }
         }
         
+        /* Responsive */
+        @media (max-width: 992px) {
+            .tagline-container {
+                gap: 30px;
+            }
+            
+            .handwritten-tagline {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: 3.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tagline-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .producer-image-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .handwritten-tagline {
+                font-size: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .transition-text {
+                font-size: 1.2rem;
+                padding: 15px 25px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .handwritten-tagline {
+                font-size: 1.6rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .transition-text {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+        
         /* Page Management */
         .page {
             display: none;
@@ -731,47 +874,119 @@
             opacity: 1;
         }
         
-        /* Mobile-specific improvements */
-        @media (max-width: 768px) {
-            /* Improve touch targets */
-            .nav-link {
-                padding: 12px 20px;
-            }
-            
-            /* Reduce blur effects on mobile for performance */
-            .liquid-glass {
-                backdrop-filter: blur(10px) saturate(180%);
-                -webkit-backdrop-filter: blur(10px) saturate(180%);
-            }
-            
+        /* Responsive Design */
+        @media (max-width: 1200px) {
             .liquid-nav {
-                backdrop-filter: blur(15px) saturate(200%);
-                -webkit-backdrop-filter: blur(15px) saturate(200%);
-                padding: 20px 30px;
+                padding: 25px 40px;
+                gap: 30px;
             }
             
-            /* Adjust work grid for mobile */
-            .work-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .hero-title {
+                font-size: 3.8rem;
             }
             
-            .work-item {
-                height: 300px;
+            .hero-subtitle {
+                font-size: 1.9rem;
             }
         }
         
-        /* Fix for iOS Safari 100vh issue */
-        @supports (-webkit-touch-callout: none) {
-            .hero-section,
+        @media (max-width: 992px) {
+            .navbar-container {
+                top: 20px;
+            }
+            
+            .liquid-nav {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 25px 30px;
+                min-height: auto;
+            }
+            
+            .nav-column.left, .nav-column.right {
+                justify-content: center;
+                padding: 0;
+            }
+            
+            .navbar-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.7rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 180px;
+            }
+            
+            .producer-image-container {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .page-content {
-                height: -webkit-fill-available;
+                padding-top: 160px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .liquid-nav {
+                padding: 20px;
+                border-radius: 40px;
+            }
+            
+            .nav-link {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Page Transition Overlay - FIXED FOR MOBILE -->
+    <!-- Page Transition Overlay - UPDATED FOR FULLSCREEN -->
     <div class="transition-overlay" id="transitionOverlay">
         <div class="transition-video-container">
             <!-- Using your video file -->
@@ -826,8 +1041,7 @@
     <!-- Home Page -->
     <div class="page active" id="home-page">
         <section class="hero-section">
-            <!-- Video background - hidden on mobile for performance -->
-            <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata">
+            <video class="hero-bg-video" autoplay muted loop playsinline>
                 <source src="Pouring Water Against a Pastel Sky During Daytime 72001457 Stock Video at Vecteezy.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -838,15 +1052,15 @@
                     <div class="col-lg-10 col-xl-8">
                         <div class="hero-content">
                             <div class="tagline-container">
-                                <div class="handwritten-tagline" id="handwrittenText">
+                                <div class="handwritten-tagline" id="handwrittenText" loop>
                                     <!-- Text will be injected by JavaScript -->
                                 </div>
-                                <div class="producer-image-container">
-                                    <img class="producer-image" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Ewuradjoa Badji - Media Producer">
+                                <div class="producer-image-container glow-effect">
+                                        <img class="producer-image" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Ewuradjoa Badji - Media Producer">
                                 </div>
                             </div>
                             
-                            <h1 class="hero-title">Ewuradjoa Badji</h1>
+                            <h1 class="hero-title text-glow">Ewuradjoa Badji</h1>
                         </div>
                     </div>
                 </div>
@@ -866,7 +1080,7 @@
             
             <div class="work-grid">
                 <!-- Work items remain the same -->
-                <div class="work-item liquid-glass">
+                <div class="work-item liquid-glass glow-effect">
                     <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Urban Wildlife Documentary">
                     <div class="work-overlay">
                         <h3 class="text-white mb-2">Urban Wilderness</h3>
@@ -878,7 +1092,7 @@
                     </div>
                 </div>
                 
-                <div class="work-item liquid-glass">
+                <div class="work-item liquid-glass glow-effect">
                     <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Midnight Echoes Music Video">
                     <div class="work-overlay">
                         <h3 class="text-white mb-2">Midnight Echoes</h3>
@@ -890,8 +1104,8 @@
                     </div>
                 </div>
                 
-                <div class="work-item liquid-glass">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Tech Brand Commercial">
+                <div class="work-item liquid-glass glow-effect">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by-wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Tech Brand Commercial">
                     <div class="work-overlay">
                         <h3 class="text-white mb-2">NexTech Vision</h3>
                         <p class="text-light">Global advertising campaign for innovative tech company</p>
@@ -902,7 +1116,7 @@
                     </div>
                 </div>
                 
-                <div class="work-item liquid-glass">
+                <div class="work-item liquid-glass glow-effect">
                     <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="The Last Light Short Film">
                     <div class="work-overlay">
                         <h3 class="text-white mb-2">The Last Light</h3>
@@ -914,7 +1128,7 @@
                     </div>
                 </div>
                 
-                <div class="work-item liquid-glass">
+                <div class="work-item liquid-glass glow-effect">
                     <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Corporate Annual Report">
                     <div class="work-overlay">
                         <h3 class="text-white mb-2">Annual Vision Report</h3>
@@ -926,7 +1140,7 @@
                     </div>
                 </div>
                 
-                <div class="work-item liquid-glass">
+                <div class="work-item liquid-glass glow-effect">
                     <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Film Festival Coverage">
                     <div class="work-overlay">
                         <h3 class="text-white mb-2">Global Film Festival</h3>
@@ -953,7 +1167,7 @@
             
             <div class="row mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="liquid-glass p-5 h-100">
+                    <div class="liquid-glass glow-effect p-5 h-100">
                         <h3 class="mb-4">My Story</h3>
                         <div class="about-content">
                             <p>Hello! I'm Ewuradjoa Badji, a passionate media producer with over 8 years of experience in visual storytelling. My journey began in film school, where I discovered the power of combining technical skill with emotional narrative.</p>
@@ -964,7 +1178,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="liquid-glass p-5 h-100">
+                    <div class="liquid-glass glow-effect p-5 h-100">
                         <h3 class="mb-4">Skills & Expertise</h3>
                         <div class="skills-container">
                             <div class="skill-item">
@@ -1087,7 +1301,7 @@
             
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
-                    <div class="liquid-glass p-5">
+                    <div class="liquid-glass glow-effect p-5">
                         <h3 class="mb-4">Send a Message</h3>
                         <form class="contact-form" id="contactForm">
                             <div class="row">
@@ -1108,7 +1322,7 @@
                             <div class="mb-4">
                                 <textarea class="form-control" placeholder="Tell me about your project, timeline, and vision..." required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-lg text-white border-0 liquid-glass" style="background: linear-gradient(135deg, var(--primary-pink), var(--light-pink)); padding: 16px 40px; font-size: 1.1rem;">
+                            <button type="submit" class="btn btn-lg text-white border-0 liquid-glass glow-effect" style="background: linear-gradient(135deg, var(--primary-pink), var(--light-pink)); padding: 16px 40px; font-size: 1.1rem;">
                                 <i class="fas fa-paper-plane me-2"></i> Send Message
                             </button>
                         </form>
@@ -1116,7 +1330,7 @@
                 </div>
                 
                 <div class="col-lg-4">
-                    <div class="liquid-glass p-5 h-100">
+                    <div class="liquid-glass glow-effect p-5 h-100">
                         <h3 class="mb-4">Contact Info</h3>
                         
                         <div class="contact-info-item">
@@ -1211,8 +1425,6 @@
         // DOM elements
         const transitionOverlay = document.getElementById('transitionOverlay');
         const transitionVideo = document.getElementById('transitionVideo');
-        const transitionVideoFallback = document.getElementById('transitionVideoFallback');
-        const playVideoBtn = document.getElementById('playVideoBtn');
         const pages = document.querySelectorAll('.page');
         const navLinks = document.querySelectorAll('.nav-link');
         const contactForm = document.getElementById('contactForm');
@@ -1220,62 +1432,58 @@
         // Current active page
         let currentPage = 'home';
         
-        // Detect if device is mobile
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        
-        // FIX: Enhanced video handling for mobile
-        function setupTransitionVideo() {
-            if (isMobile) {
-                // Preload video for mobile
-                transitionVideo.load();
-                
-                // Add fallback for mobile autoplay issues
-                transitionVideo.addEventListener('loadeddata', function() {
-                    // Try to play on mobile with user interaction
-                    const playPromise = transitionVideo.play();
-                    
-                    if (playPromise !== undefined) {
-                        playPromise.catch(() => {
-                            // If autoplay is blocked, show fallback
-                            transitionVideoFallback.classList.add('active');
-                        });
-                    }
-                });
-                
-                // Add user interaction handler for video playback
-                if (playVideoBtn) {
-                    playVideoBtn.addEventListener('click', function() {
-                        transitionVideo.play();
-                        transitionVideoFallback.classList.remove('active');
-                    });
+        // Enhanced liquid glass effect on hover
+        function enhanceGlassEffects() {
+            const glassElements = document.querySelectorAll('.liquid-glass');
+            
+            glassElements.forEach(element => {
+                // Add random shimmer delay
+                const shimmer = element.querySelector('.liquid-glass::before');
+                if (shimmer) {
+                    shimmer.style.transitionDelay = `${Math.random() * 0.5}s`;
                 }
                 
-                // Listen for video play success
-                transitionVideo.addEventListener('play', function() {
-                    transitionVideoFallback.classList.remove('active');
+                // Add mouse move parallax effect
+                element.addEventListener('mousemove', (e) => {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateY = (x - centerX) / 25;
+                    const rotateX = (centerY - y) / 25;
+                    
+                    element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
                 });
-            } else {
-                // Desktop - autoplay should work
-                transitionVideo.play().catch(() => {
-                    transitionVideoFallback.classList.add('active');
+                
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
                 });
-            }
+            });
         }
         
-        // Function to switch pages with enhanced transition
+        // Function to switch pages with enhanced transition - UPDATED FOR LONGER DURATION
         function switchPage(pageId) {
             if (pageId === currentPage) return;
             
-            // Show transition overlay
+            // Show transition overlay with enhanced animation
             transitionOverlay.classList.add('active');
             
             // Reset and play transition video
             transitionVideo.currentTime = 0;
-            setupTransitionVideo();
+            const playPromise = transitionVideo.play();
             
-            // Page transition with animation
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Video playback failed:", error);
+                });
+            }
+            
+            // Enhanced page transition with multiple effects - INCREASED DURATION
             setTimeout(() => {
-                // Hide current page
+                // Hide current page with fade out
                 const currentPageElement = document.getElementById(`${currentPage}-page`);
                 currentPageElement.style.opacity = '0';
                 currentPageElement.style.transform = 'translateY(20px)';
@@ -1317,16 +1525,21 @@
                             behavior: 'smooth'
                         });
                         
-                        // Hide transition overlay
+                        // Re-enhance glass effects for new page
+                        setTimeout(() => {
+                            enhanceGlassEffects();
+                        }, 100);
+                        
+                        // Hide transition overlay - INCREASED DELAY
                         setTimeout(() => {
                             transitionOverlay.classList.remove('active');
-                        }, 1200);
+                        }, 1200); // Increased from 800ms
                     }, 50);
                 }, 300);
-            }, 1500);
+            }, 1500); // Increased from 1000ms
         }
         
-        // Function to animate skill bars
+        // Function to animate skill bars with progressive animation
         function animateSkillBars() {
             const skillBars = document.querySelectorAll('.skill-bar');
             
@@ -1334,8 +1547,17 @@
                 const width = bar.getAttribute('data-width');
                 bar.style.width = '0';
                 
+                // Stagger the animations
                 setTimeout(() => {
                     bar.style.width = `${width}%`;
+                    
+                    // Add completion effect
+                    setTimeout(() => {
+                        bar.style.boxShadow = '0 0 20px rgba(255, 77, 148, 0.5)';
+                        setTimeout(() => {
+                            bar.style.boxShadow = 'none';
+                        }, 300);
+                    }, 1500);
                 }, index * 200);
             });
         }
@@ -1377,7 +1599,7 @@
             });
         }
         
-        // Form handling
+        // Form handling with enhanced feedback
         function setupContactForm() {
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
@@ -1470,13 +1692,15 @@
             container.appendChild(svg);
         }
         
-        // FIX: Initialize with proper mobile handling
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             // Initial animations
             setTimeout(() => {
                 const heroTitle = document.querySelector('.hero-title');
+                const heroSubtitle = document.querySelector('.hero-subtitle');
                 
                 if (heroTitle) heroTitle.style.opacity = '1';
+                if (heroSubtitle) heroSubtitle.style.opacity = '1';
             }, 500);
             
             // Set up navigation
@@ -1494,8 +1718,8 @@
             // Set up contact form
             setupContactForm();
             
-            // Set up transition video
-            setupTransitionVideo();
+            // Enhance glass effects
+            enhanceGlassEffects();
             
             // Animate skill bars if on about page initially
             if (currentPage === 'about') {
@@ -1507,30 +1731,26 @@
             // Create handwritten text
             createHandwrittenText('From Concepts to Goosebumps', 'handwrittenText');
             
-            // FIX: Handle mobile viewport height issues
-            function setViewportHeight() {
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-                
-                // Set min-height for hero section on mobile
-                if (isMobile) {
-                    const heroSection = document.querySelector('.hero-section');
-                    if (heroSection) {
-                        heroSection.style.minHeight = `${window.innerHeight}px`;
-                    }
-                }
+            // Add subtle background animation (only for desktop)
+            if (!isTouchDevice) {
+                document.addEventListener('mousemove', (e) => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    
+                    document.querySelector('body').style.backgroundPosition = 
+                        `${x * 100}% ${y * 100}%`;
+                });
             }
             
-            setViewportHeight();
-            window.addEventListener('resize', setViewportHeight);
-            window.addEventListener('orientationchange', setViewportHeight);
+            // Fix mobile viewport height
+            function setVH() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
             
-            // FIX: Hide transition overlay after page load
-            setTimeout(() => {
-                if (transitionOverlay.classList.contains('active')) {
-                    transitionOverlay.classList.remove('active');
-                }
-            }, 2000);
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', setVH);
         });
         
         // Handle browser navigation
