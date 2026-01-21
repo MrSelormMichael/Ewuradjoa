@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ewuradjoa Badji | Media Producer</title>
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,12 +32,18 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--pastel-gray) 0%, #fff 50%, var(--pastel-pink) 100%);
             color: var(--dark-text);
-            overflow-x: hidden;
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             position: relative;
         }
         
@@ -75,7 +81,56 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
+        /* CHANGES - Make hero section take 100% viewport height on mobile */
+        #home-page .hero-section {
+            height: 100vh;
+            height: -webkit-fill-available;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            position: relative;
+        }
+
+        /* Ensure footer is below hero section on home page */
+        #home-page {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+
+        /* Allow scrolling to see footer */
+        #home-page .footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* CHANGES - For other pages, keep the existing layout */
+        #work-page .page-content > .container,
+        #about-page .page-content > .container,
+        #contact-page .page-content > .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        #work-page .page-content > .container > .row,
+        #about-page .page-content > .container > .row,
+        #contact-page .page-content > .container > .row {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Keep footer visible but below content */
+        .footer {
+            position: relative;
+            width: 100%;
+        }
         
+
         .liquid-glass::before {
             content: '';
             position: absolute;
@@ -139,13 +194,14 @@
             text-shadow: 0 0 20px rgba(255, 77, 148, 0.5);
         }
         
-        /* Page Transition Overlay - UPDATED FOR FULLSCREEN */
+        /* Page Transition Overlay - FIXED FOR MOBILE */
         .transition-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
+            height: -webkit-fill-available;
             background: linear-gradient(135deg, var(--primary-pink) 0%, var(--pastel-mint) 100%);
             z-index: 9999;
             display: flex;
@@ -154,13 +210,14 @@
             align-items: center;
             transform: translateY(-100%);
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow: hidden;
         }
         
         .transition-overlay.active {
             transform: translateY(0);
         }
         
-        /* Fullscreen video container */
+        /* Fullscreen video container - FIXED FOR MOBILE */
         .transition-video-container {
             position: absolute;
             top: 0;
@@ -175,6 +232,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         
         .transition-text {
@@ -257,6 +317,7 @@
             overflow: hidden;
             white-space: nowrap;
             font-size: 1.05rem;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .nav-link::before {
@@ -289,6 +350,7 @@
         /* Hero Section */
         .hero-section {
             height: 100vh;
+            height: -webkit-fill-available;
             display: flex;
             align-items: center;
             position: relative;
@@ -547,6 +609,7 @@
             overflow: hidden;
             position: relative;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .work-item img {
@@ -704,6 +767,7 @@
             font-size: 1.5rem;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .social-link:hover {
@@ -782,74 +846,7 @@
             }
         }
         
-        /* Responsive */
-        @media (max-width: 992px) {
-            .tagline-container {
-                gap: 30px;
-            }
-            
-            .handwritten-tagline {
-                font-size: 2.5rem;
-            }
-            
-            .hero-title {
-                font-size: 3.2rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .tagline-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .producer-image-container {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .handwritten-tagline {
-                font-size: 2rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .transition-text {
-                font-size: 1.2rem;
-                padding: 15px 25px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .handwritten-tagline {
-                font-size: 1.6rem;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .transition-text {
-                font-size: 1rem;
-                padding: 10px 20px;
-            }
-        }
-        
-        /* Page Management */
-        .page {
-            display: none;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        .page.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        /* Responsive Design */
+        /* ===== MOBILE RESPONSIVENESS ===== */
         @media (max-width: 1200px) {
             .liquid-nav {
                 padding: 25px 40px;
@@ -860,8 +857,8 @@
                 font-size: 3.8rem;
             }
             
-            .hero-subtitle {
-                font-size: 1.9rem;
+            .handwritten-tagline {
+                font-size: 3rem;
             }
         }
         
@@ -891,8 +888,8 @@
                 font-size: 3.2rem;
             }
             
-            .hero-subtitle {
-                font-size: 1.7rem;
+            .handwritten-tagline {
+                font-size: 2.5rem;
             }
             
             .section-title {
@@ -902,24 +899,36 @@
             .work-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
+            
+            .tagline-container {
+                gap: 30px;
+            }
         }
         
         @media (max-width: 768px) {
+            /* CHANGES - Fix mobile hero section to take 100% viewport */
             .hero-section {
                 padding-top: 180px;
+                height: 100vh;
+                height: -webkit-fill-available;
+                min-height: 100vh;
+                min-height: -webkit-fill-available;
+                padding-bottom: 120px;
             }
             
             .producer-image-container {
-                width: 220px;
-                height: 220px;
+                width: 180px;
+                height: 180px;
             }
             
             .hero-title {
                 font-size: 2.8rem;
             }
             
-            .hero-subtitle {
-                font-size: 1.5rem;
+            .handwritten-tagline {
+                font-size: 2.2rem;
+                white-space: normal;
+                text-align: center;
             }
             
             .section-title {
@@ -928,44 +937,237 @@
             
             .work-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .work-item {
+                height: 350px;
             }
             
             .page-content {
                 padding-top: 160px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .tagline-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .transition-text {
+                font-size: 1.2rem;
+                padding: 15px 25px;
+                margin-top: 10px;
+            }
+            
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-right: 20px;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
         }
         
         @media (max-width: 576px) {
             .liquid-nav {
-                padding: 20px;
+                padding: 15px;
                 border-radius: 40px;
+                margin: 0 10px;
             }
             
             .nav-link {
-                padding: 10px 20px;
+                padding: 10px 18px;
                 font-size: 0.95rem;
             }
             
             .hero-title {
                 font-size: 2.2rem;
+                padding-bottom: 2rem;
             }
             
-            .hero-subtitle {
-                font-size: 1.3rem;
+            .handwritten-tagline {
+                font-size: 1.8rem;
+                padding-top: 1rem;
             }
             
             .section-title {
                 font-size: 1.8rem;
+                margin-bottom: 40px;
             }
+            
+            .section-title::after {
+                height: 4px;
+                bottom: -10px;
+            }
+            
+            .work-item {
+                height: 300px;
+            }
+            
+            .work-overlay {
+                padding: 25px 20px 20px;
+            }
+            
+            .contact-form .form-control {
+                padding: 14px 18px;
+                font-size: 1rem;
+            }
+            
+            .liquid-glass {
+                padding: 25px !important;
+                border-radius: 20px;
+            }
+            
+            .footer {
+                padding: 40px 0 30px;
+                margin-top: 70px;
+            }
+            
+            .transition-text {
+                font-size: 1rem;
+                padding: 12px 20px;
+                margin-top: 5px;
+            }
+            
+            .producer-image-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+                width: 55px;
+                height: 55px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .handwritten-tagline {
+                font-size: 1.5rem;
+            }
+            
+            .nav-link {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+            
+            .work-item {
+                height: 250px;
+            }
+            
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Page Management */
+        .page {
+            display: none;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .liquid-glass:hover {
+                transform: none;
+            }
+            
+            .glow-effect::after {
+                display: none;
+            }
+            
+            .nav-link:hover {
+                background: none;
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .nav-link.active {
+                background: linear-gradient(135deg, var(--primary-pink), var(--light-pink));
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(255, 77, 148, 0.3);
+            }
+            
+            .work-item:hover img {
+                transform: none;
+            }
+            
+            .work-item:hover .work-overlay {
+                transform: translateY(100%);
+            }
+            
+            /* Show overlay on touch */
+            .work-item.touch-active .work-overlay {
+                transform: translateY(0);
+            }
+            
+            .work-item.touch-active img {
+                transform: scale(1.05);
+            }
+            
+            .social-link:hover {
+                transform: none;
+            }
+            
+            .contact-info-item:hover {
+                transform: none;
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+        
+        /* Prevent text selection on mobile */
+        .nav-link, .social-link, .work-item {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* CHANGES - Ensure home page content doesn't force footer to be visible */
+        #home-page .hero-section ~ .footer {
+            position: relative;
+            margin-top: 0;
+        }
+
+        /* CHANGES - For home page only, make footer appear below viewport */
+        #home-page .footer {
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
-    <!-- Page Transition Overlay - UPDATED FOR FULLSCREEN -->
+    <!-- Page Transition Overlay - FIXED FOR MOBILE -->
     <div class="transition-overlay" id="transitionOverlay">
         <div class="transition-video-container">
             <!-- Using your video file -->
-            <video class="transition-video" autoplay muted loop id="transitionVideo">
+            <video class="transition-video" autoplay muted loop id="transitionVideo" playsinline>
                 <source src="MODULAR-1-03.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -1021,7 +1223,7 @@
                     <div class="col-lg-10 col-xl-8">
                         <div class="hero-content">
                             <div class="tagline-container">
-                                <div class="handwritten-tagline" id="handwrittenText" loop>
+                                <div class="handwritten-tagline" id="handwrittenText">
                                     <!-- Text will be injected by JavaScript -->
                                 </div>
                                 <div class="producer-image-container glow-effect">
@@ -1035,6 +1237,40 @@
                 </div>
             </div>
         </section>
+
+        <!-- Footer on home page is now BELOW the hero section -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                        <h4 class="mb-2">Ewuradjoa Badji</h4>
+                        <p class="mb-0" style="color: var(--light-text);">Media Producer & Visual Storyteller</p>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-vimeo-v"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <p class="mb-0" style="color: var(--light-text);">&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</p>
+                        <small style="color: var(--light-text);">From Concepts to Goosebumps™</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
     
     <!-- Work Page -->
@@ -1048,7 +1284,6 @@
             </div>
             
             <div class="work-grid">
-                <!-- Work items remain the same -->
                 <div class="work-item liquid-glass glow-effect">
                     <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Urban Wildlife Documentary">
                     <div class="work-overlay">
@@ -1122,6 +1357,40 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer for other pages remains the same -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                        <h4 class="mb-2">Ewuradjoa Badji</h4>
+                        <p class="mb-0" style="color: var(--light-text);">Media Producer & Visual Storyteller</p>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-vimeo-v"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <p class="mb-0" style="color: var(--light-text);">&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</p>
+                        <small style="color: var(--light-text);">From Concepts to Goosebumps™</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
     
     <!-- About Page -->
@@ -1256,6 +1525,40 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer for other pages -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                        <h4 class="mb-2">Ewuradjoa Badji</h4>
+                        <p class="mb-0" style="color: var(--light-text);">Media Producer & Visual Storyteller</p>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-vimeo-v"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <p class="mb-0" style="color: var(--light-text);">&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</p>
+                        <small style="color: var(--light-text);">From Concepts to Goosebumps™</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
     
     <!-- Contact Page -->
@@ -1351,41 +1654,41 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
-                    <h4 class="mb-2">Ewuradjoa Badji</h4>
-                    <p class="mb-0" style="color: var(--light-text);">Media Producer & Visual Storyteller</p>
-                </div>
-                
-                <div class="col-lg-4 text-center mb-4 mb-lg-0">
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-vimeo-v"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+
+        <!-- Footer for other pages -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                        <h4 class="mb-2">Ewuradjoa Badji</h4>
+                        <p class="mb-0" style="color: var(--light-text);">Media Producer & Visual Storyteller</p>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-vimeo-v"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <p class="mb-0" style="color: var(--light-text);">&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</p>
+                        <small style="color: var(--light-text);">From Concepts to Goosebumps™</small>
                     </div>
                 </div>
-                
-                <div class="col-lg-4 text-center text-lg-end">
-                    <p class="mb-0" style="color: var(--light-text);">&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</p>
-                    <small style="color: var(--light-text);">From Concepts to Goosebumps™</small>
-                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -1398,42 +1701,47 @@
         const navLinks = document.querySelectorAll('.nav-link');
         const contactForm = document.getElementById('contactForm');
         
+        // Check if device is touch
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
         // Current active page
         let currentPage = 'home';
         
-        // Enhanced liquid glass effect on hover
+        // Enhanced liquid glass effect on hover (only for non-touch)
         function enhanceGlassEffects() {
             const glassElements = document.querySelectorAll('.liquid-glass');
             
             glassElements.forEach(element => {
-                // Add random shimmer delay
-                const shimmer = element.querySelector('.liquid-glass::before');
-                if (shimmer) {
-                    shimmer.style.transitionDelay = `${Math.random() * 0.5}s`;
+                if (!isTouchDevice) {
+                    // Add random shimmer delay
+                    const shimmer = element.querySelector('.liquid-glass::before');
+                    if (shimmer) {
+                        shimmer.style.transitionDelay = `${Math.random() * 0.5}s`;
+                    }
+                    
+                    // Add mouse move parallax effect
+                    element.addEventListener('mousemove', (e) => {
+                        const rect = element.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const rotateY = (x - centerX) / 25;
+                        const rotateX = (centerY - y) / 25;
+                        
+                        element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                    });
                 }
-                
-                // Add mouse move parallax effect
-                element.addEventListener('mousemove', (e) => {
-                    const rect = element.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateY = (x - centerX) / 25;
-                    const rotateX = (centerY - y) / 25;
-                    
-                    element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
-                });
-                
-                element.addEventListener('mouseleave', () => {
-                    element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
-                });
             });
         }
         
-        // Function to switch pages with enhanced transition - UPDATED FOR LONGER DURATION
+        // Function to switch pages with enhanced transition
         function switchPage(pageId) {
             if (pageId === currentPage) return;
             
@@ -1450,7 +1758,7 @@
                 });
             }
             
-            // Enhanced page transition with multiple effects - INCREASED DURATION
+            // Enhanced page transition with multiple effects
             setTimeout(() => {
                 // Hide current page with fade out
                 const currentPageElement = document.getElementById(`${currentPage}-page`);
@@ -1499,13 +1807,13 @@
                             enhanceGlassEffects();
                         }, 100);
                         
-                        // Hide transition overlay - INCREASED DELAY
+                        // Hide transition overlay
                         setTimeout(() => {
                             transitionOverlay.classList.remove('active');
-                        }, 1200); // Increased from 800ms
+                        }, 1200);
                     }, 50);
                 }, 300);
-            }, 1500); // Increased from 1000ms
+            }, 1500);
         }
         
         // Function to animate skill bars with progressive animation
@@ -1536,35 +1844,71 @@
             const workItems = document.querySelectorAll('.work-item');
             
             workItems.forEach(item => {
-                // Click effect
-                item.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    this.style.boxShadow = '0 0 40px rgba(255, 77, 148, 0.6)';
+                if (isTouchDevice) {
+                    // Touch device interactions
+                    let touchStartTime;
                     
-                    setTimeout(() => {
-                        this.style.transform = '';
-                        this.style.boxShadow = '';
-                    }, 300);
+                    item.addEventListener('touchstart', function(e) {
+                        touchStartTime = Date.now();
+                        this.classList.add('touch-active');
+                    });
                     
-                    // In a real site, this would open a modal or detail view
-                    const title = this.querySelector('h3').textContent;
-                    console.log(`Opening project: ${title}`);
-                });
-                
-                // Enhanced hover effect
-                item.addEventListener('mouseenter', function() {
-                    const overlay = this.querySelector('.work-overlay');
-                    if (overlay) {
-                        overlay.style.transform = 'translateY(0)';
-                    }
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    const overlay = this.querySelector('.work-overlay');
-                    if (overlay) {
-                        overlay.style.transform = 'translateY(100%)';
-                    }
-                });
+                    item.addEventListener('touchend', function(e) {
+                        const touchDuration = Date.now() - touchStartTime;
+                        
+                        if (touchDuration < 500) {
+                            // Treat as tap/click
+                            this.style.transform = 'scale(0.95)';
+                            this.style.boxShadow = '0 0 40px rgba(255, 77, 148, 0.6)';
+                            
+                            setTimeout(() => {
+                                this.style.transform = '';
+                                this.style.boxShadow = '';
+                            }, 300);
+                            
+                            const title = this.querySelector('h3').textContent;
+                            console.log(`Opening project: ${title}`);
+                        }
+                        
+                        // Remove touch active class after a delay
+                        setTimeout(() => {
+                            this.classList.remove('touch-active');
+                        }, 1000);
+                    });
+                    
+                    item.addEventListener('touchmove', function() {
+                        this.classList.remove('touch-active');
+                    });
+                } else {
+                    // Desktop interactions
+                    item.addEventListener('click', function() {
+                        this.style.transform = 'scale(0.95)';
+                        this.style.boxShadow = '0 0 40px rgba(255, 77, 148, 0.6)';
+                        
+                        setTimeout(() => {
+                            this.style.transform = '';
+                            this.style.boxShadow = '';
+                        }, 300);
+                        
+                        const title = this.querySelector('h3').textContent;
+                        console.log(`Opening project: ${title}`);
+                    });
+                    
+                    // Enhanced hover effect
+                    item.addEventListener('mouseenter', function() {
+                        const overlay = this.querySelector('.work-overlay');
+                        if (overlay) {
+                            overlay.style.transform = 'translateY(0)';
+                        }
+                    });
+                    
+                    item.addEventListener('mouseleave', function() {
+                        const overlay = this.querySelector('.work-overlay');
+                        if (overlay) {
+                            overlay.style.transform = 'translateY(100%)';
+                        }
+                    });
+                }
             });
         }
         
@@ -1700,20 +2044,30 @@
             // Create handwritten text
             createHandwrittenText('From Concepts to Goosebumps', 'handwrittenText');
             
-            // Add subtle background animation
-            document.addEventListener('mousemove', (e) => {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                document.querySelector('body').style.backgroundPosition = 
-                    `${x * 100}% ${y * 100}%`;
-            });
+            // Add subtle background animation (only for desktop)
+            if (!isTouchDevice) {
+                document.addEventListener('mousemove', (e) => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    
+                    document.querySelector('body').style.backgroundPosition = 
+                        `${x * 100}% ${y * 100}%`;
+                });
+            }
+            
+            // Fix mobile viewport height
+            function setVH() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', setVH);
         });
         
         // Handle browser navigation
         window.addEventListener('popstate', function() {
-            // In a more complex SPA, you would parse the URL and switch to the correct page
-            // For this demo, we'll ensure home is active if no page matches
             if (!document.getElementById(`${currentPage}-page`).classList.contains('active')) {
                 switchPage('home');
             }
