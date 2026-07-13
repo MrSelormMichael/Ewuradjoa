@@ -1011,7 +1011,12 @@
     </div>
     <div class="hero-portrait-wrap" aria-hidden="true">
       <div class="hero-portrait-frame">
-        <img class="hero-portrait-img" src="./assets/images/Main_image.png" alt="" loading="eager">
+        <!-- Debug: Check if image exists -->
+<img class="hero-portrait-img" src="assets/images/Main_image.png" 
+     alt="Main portrait image" 
+     loading="eager"
+     onerror="console.log('Image failed to load'); this.style.border='3px solid red';"
+     onload="console.log('Image loaded successfully');">
       </div>
     </div>
     <div class="hero-rule hero-rule-left" aria-hidden="true"></div>
