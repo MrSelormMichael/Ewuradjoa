@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Ewuradjoa Badji | About</title>
+<meta name="description" content="Ewuradjoa Badji — media producer and visual storyteller. Learn about my journey and creative process.">
+<meta name="theme-color" content="#ec407a">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- anime.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<!-- Shared Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ============================================================
+   ABOUT PAGE - Mobile First
+   ============================================================ */
+.about-hero {
+  min-height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: var(--sp-4);
+  background: linear-gradient(135deg, var(--pink-light), var(--cream));
+}
+
+.about-hero .section-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+.about-content {
+  line-height: 1.8;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  color: var(--light-text);
+}
+
+.about-content p + p {
+  margin-top: 12px;
+}
+
+.skills-container {
+  margin-top: var(--sp-3);
+}
+
+.skill-item {
+  margin-bottom: var(--sp-3);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.skill-bar-container {
+  height: 8px;
+  background: var(--glass-border);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink-primary), var(--gold));
+  border-radius: 8px;
+  width: 0;
+  transition: width 1.4s var(--ease-spring);
+  position: relative;
+}
+
+.skill-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.award-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s var(--ease-spring);
+}
+
+.award-item:active {
+  transform: scale(0.97);
+}
+
+.award-icon {
+  font-size: 1.3rem;
+  color: var(--pink-primary);
+  flex-shrink: 0;
+}
+
+.award-item h6 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.award-item small {
+  color: var(--light-text);
+  font-size: 0.75rem;
+}
+
+.liquid-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
+}
+
+.liquid-glass:active {
+  transform: scale(0.98);
+}
+
+.card-pad {
+  padding: var(--sp-4);
+}
+
+.h-100 {
+  height: 100%;
+}
+
+/* ============================================================
+   RESPONSIVE - Tablet & Up
+   ============================================================ */
+@media (min-width: 480px) {
+  .awards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .about-hero {
+    min-height: 50vh;
+    padding-top: 140px;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+  }
+  
+  .card-pad {
+    padding: var(--sp-4);
+  }
+  
+  .awards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-pad {
+    padding: var(--sp-5);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE TRANSITION OVERLAY
+     ============================================================ -->
+<div class="page-transition" id="pageTransition"></div>
+
+<!-- ============================================================
+     CUSTOM CURSOR
+     ============================================================ -->
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<div class="navbar-container">
+  <nav class="liquid-nav" id="liquidNav">
+    <ul class="navbar-nav" id="navbarNav">
+      <li><a class="nav-link" href="index.html"><i class="fas fa-home icon"></i> Home</a></li>
+      <li><a class="nav-link" href="work.html"><i class="fas fa-film icon"></i> Work</a></li>
+      <li><a class="nav-link active" href="about.html"><i class="fas fa-user icon"></i> About</a></li>
+      <li><a class="nav-link nav-link-contact" href="contact.html"><i class="fas fa-envelope icon"></i> Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fas fa-bars icon"></i>
+    </button>
+  </nav>
+</div>
+
+<!-- ============================================================
+     ABOUT PAGE
+     ============================================================ -->
+<div class="page active" id="about-page">
+
+  <!-- About Hero -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="section-head center">
+        <span class="section-eyebrow">About Me</span>
+        <h1 class="section-title">Creative <span class="highlight">Journey</span></h1>
+        <p class="section-lede" style="margin:0 auto;">Crafting stories that resonate and inspire</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="liquid-glass card-pad h-100 reveal">
+          <h3 style="margin-bottom:16px;font-size:clamp(1.3rem, 3vw, 1.6rem);">My Story</h3>
+          <div class="about-content">
+            <p>Hello! I'm Ewuradjoa Badji, a passionate media producer with over 8 years of experience in visual storytelling. My journey began in film school, where I discovered the power of combining technical skill with emotional narrative.</p>
+            <p>I believe every project is an opportunity to create something meaningful — whether it's a 30-second commercial or a feature-length documentary. My approach combines meticulous planning with spontaneous creativity, allowing for both structure and magic in the production process.</p>
+            <p>Throughout my career, I've had the privilege of working with diverse clients and teams, from independent artists to global corporations. Each collaboration has taught me that the best media production happens at the intersection of vision, technology, and human connection.</p>
+            <p>When I'm not on set or in the editing suite, I'm exploring new storytelling technologies, mentoring emerging filmmakers, and seeking inspiration in the world around me.</p>
+          </div>
+        </div>
+
+        <div class="liquid-glass card-pad h-100 reveal">
+          <h3 style="margin-bottom:16px;font-size:clamp(1.3rem, 3vw, 1.6rem);">Skills &amp; Expertise</h3>
+          <div class="skills-container">
+            <div class="skill-item">
+              <div class="skill-header"><span>Video Production</span><span>96%</span></div>
+              <div class="skill-bar-container"><div class="skill-bar" data-width="96"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>Cinematography</span><span>94%</span></div>
+              <div class="skill-bar-container"><div class="skill-bar" data-width="94"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>Video Editing</span><span>98%</span></div>
+              <div class="skill-bar-container"><div class="skill-bar" data-width="98"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>Sound Design</span><span>89%</span></div>
+              <div class="skill-bar-container"><div class="skill-bar" data-width="89"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>Storyboarding</span><span>92%</span></div>
+              <div class="skill-bar-container"><div class="skill-bar" data-width="92"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header"><span>Visual Effects</span><span>87%</span></div>
+              <div class="skill-bar-container"><div class="skill-bar" data-width="87"></div></div>
+            </div>
+          </div>
+
+          <div style="margin-top:32px;">
+            <h4 style="margin-bottom:12px;font-size:1.1rem;">Awards &amp; Recognition</h4>
+            <div class="awards-grid">
+              <div class="award-item"><i class="fas fa-trophy award-icon"></i><div><h6>Best Documentary 2022</h6><small>International Film Festival</small></div></div>
+              <div class="award-item"><i class="fas fa-star award-icon"></i><div><h6>Creative Excellence Award</h6><small>Media Production Guild</small></div></div>
+              <div class="award-item"><i class="fas fa-star award-icon"></i><div><h6>Emerging Talent Award</h6><small>Global Media Awards</small></div></div>
+              <div class="award-item"><i class="fas fa-film award-icon"></i><div><h6>Best Short Film 2021</h6><small>Indie Film Festival</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Ewuradjoa Badji</h4>
+          <p>Producer, Marketing Executive, Project Manager &amp; Event Management</p>
+        </div>
+        <div class="footer-links">
+          <h6>Explore</h6>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h6>Follow Along</h6>
+          <div class="social-links">
+            <a href="https://www.instagram.com/ewuradjoa_badji/" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ewuradjoa-badji-125159168/" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</span>
+        <span>From Concepts to Goosebumps&trade;</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Shared JavaScript -->
+<script src="js/main.js"></script>
+</body>
+</html>

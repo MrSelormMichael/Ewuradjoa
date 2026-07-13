@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Ewuradjoa Badji | Home</title>
+<meta name="description" content="Ewuradjoa Badji — media producer and visual storyteller. From concepts to goosebumps.">
+<meta name="theme-color" content="#ec407a">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- anime.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<!-- Shared Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ============================================================
+   HOME PAGE SPECIFIC - Mobile First
+   ============================================================ */
+.hero-section {
+  min-height: 100dvh;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+  padding-top: 110px;
+  padding-bottom: 50px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255, 213, 79, 0.16), transparent 55%),
+    radial-gradient(circle at 10% 85%, rgba(236, 64, 122, 0.22), transparent 55%),
+    linear-gradient(155deg, var(--charcoal) 0%, #3a2440 55%, var(--pink-dark) 130%);
+  color: #fff;
+}
+
+/* subtle poster texture */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 3px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================
+   LIQUID GRADIENT BACKGROUND
+   ============================================================ */
+.hero-liquid-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.liquid-blob {
+  position: absolute;
+  border-radius: 48% 52% 55% 45% / 45% 55% 48% 52%;
+  filter: blur(60px);
+  will-change: transform, border-radius;
+  mix-blend-mode: screen;
+  opacity: 0.75;
+}
+
+.liquid-blob-1 {
+  top: -18%;
+  left: -12%;
+  width: 65vw;
+  height: 65vw;
+  max-width: 620px;
+  max-height: 620px;
+  background: radial-gradient(circle at 35% 35%, var(--pink-glow), transparent 70%);
+  animation: liquidDrift1 16s ease-in-out infinite;
+}
+
+.liquid-blob-2 {
+  bottom: -22%;
+  right: -15%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 560px;
+  max-height: 560px;
+  background: radial-gradient(circle at 60% 40%, var(--gold), transparent 70%);
+  animation: liquidDrift2 20s ease-in-out infinite;
+}
+
+.liquid-blob-3 {
+  top: 30%;
+  left: 40%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 420px;
+  max-height: 420px;
+  background: radial-gradient(circle at 50% 50%, var(--pink-dark), transparent 70%);
+  animation: liquidDrift3 24s ease-in-out infinite;
+  opacity: 0.55;
+}
+
+@keyframes liquidDrift1 {
+  0%   { transform: translate(0, 0) scale(1); border-radius: 48% 52% 55% 45% / 45% 55% 48% 52%; }
+  33%  { transform: translate(8vw, 6vh) scale(1.15); border-radius: 60% 40% 45% 55% / 55% 45% 60% 40%; }
+  66%  { transform: translate(-4vw, 9vh) scale(0.92); border-radius: 40% 60% 50% 50% / 50% 50% 40% 60%; }
+  100% { transform: translate(0, 0) scale(1); border-radius: 48% 52% 55% 45% / 45% 55% 48% 52%; }
+}
+
+@keyframes liquidDrift2 {
+  0%   { transform: translate(0, 0) scale(1); border-radius: 55% 45% 40% 60% / 50% 50% 55% 45%; }
+  40%  { transform: translate(-7vw, -8vh) scale(1.2); border-radius: 45% 55% 60% 40% / 40% 60% 45% 55%; }
+  70%  { transform: translate(5vw, -4vh) scale(0.88); border-radius: 60% 40% 45% 55% / 55% 45% 50% 50%; }
+  100% { transform: translate(0, 0) scale(1); border-radius: 55% 45% 40% 60% / 50% 50% 55% 45%; }
+}
+
+@keyframes liquidDrift3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-6vw, 5vh) scale(1.25); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-blob { animation: none !important; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 8px 4px;
+}
+
+/* ============================================================
+   HERO PORTRAIT
+   ============================================================ */
+.hero-portrait-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-portrait-frame {
+  position: relative;
+  height: 62%;
+  max-height: 480px;
+  margin-top: auto;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+  opacity: 0;
+  animation: portraitReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+.hero-portrait-frame::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -4%;
+  height: 40%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.45), transparent 70%);
+  filter: blur(18px);
+  z-index: -1;
+}
+
+.hero-portrait-img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.4));
+  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+}
+
+@keyframes portraitReveal {
+  from { opacity: 0; transform: translateY(50px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait-frame { animation: none; opacity: 1; }
+}
+
+/* thin poster rule lines */
+.hero-rule {
+  position: absolute;
+  top: 90px;
+  bottom: 70px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.28);
+  z-index: 1;
+  display: none;
+}
+
+.hero-rule-left { left: 24px; }
+.hero-rule-right { right: 24px; }
+
+.hero-top-row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  animation: heroFadeUp 0.8s ease-out 0.1s both;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 11vw, 6.5rem);
+  font-weight: 700;
+  line-height: 0.98;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero-title .hero-title-line {
+  display: block;
+}
+
+.hero-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(36px) rotate(4deg);
+}
+
+.hero-title .highlight .hero-letter {
+  background: linear-gradient(135deg, var(--gold), var(--pink-glow));
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 5s ease-in-out infinite;
+}
+
+@keyframes shimmerText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-letter { opacity: 1; transform: none; }
+  .hero-title .highlight .hero-letter { animation: none; }
+}
+
+.handwritten-tagline {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.4rem, 5vw, 2.1rem);
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 0 0 60px rgba(236, 64, 122, 0.2);
+  line-height: 1.2;
+  max-width: 20ch;
+}
+
+.handwritten-text {
+  display: inline-block;
+  animation: heroFadeUp 0.6s ease-out 0.5s both;
+}
+
+.hero-manifesto {
+  max-width: 320px;
+  padding-left: 18px;
+  border-left: 2px solid rgba(255, 255, 255, 0.35);
+  animation: heroFadeUp 0.9s ease-out 0.4s both;
+}
+
+.hero-manifesto-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.hero-manifesto-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hero-bottom-row {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.hero-credentials {
+  animation: heroFadeUp 0.9s ease-out 0.6s both;
+}
+
+.hero-credentials-name {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.hero-credentials-meta {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+.hero-barcode-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: heroFadeUp 0.9s ease-out 0.8s both;
+}
+
+.hero-barcode {
+  height: 34px;
+  width: auto;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.hero-site-url {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.78rem, 2vw, 0.95rem);
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 3;
+  opacity: 0.8;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  padding: 10px;
+}
+
+.scroll-cue .icon {
+  font-size: 1.4rem;
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ============================================================
+   MARQUEE - Technology Focus Areas
+   ============================================================ */
+.marquee-section {
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--pink-light), var(--cream), var(--gold-light));
+  padding: 14px 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.marquee-content {
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  animation: marqueeScroll 20s linear infinite;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+  color: var(--dark-text);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.marquee-item i {
+  color: var(--pink-primary);
+  font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   MARQUEE HERO - Portfolio
+   ============================================================ */
+.marquee-hero-section {
+  padding: var(--sp-4) 0;
+  position: relative;
+}
+
+.marquee-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  margin: 0 var(--sp-2);
+}
+
+.marquee-hero-track {
+  display: flex;
+  gap: 12px;
+  animation: marquee-hero-scroll 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-hero-track.paused {
+  animation-play-state: paused;
+}
+
+.marquee-hero-item {
+  position: relative;
+  flex-shrink: 0;
+  width: 200px;
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.marquee-hero-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-spring);
+}
+
+.marquee-hero-item:active {
+  transform: scale(0.96);
+}
+
+.marquee-hero-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(44, 26, 46, 0.9), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.marquee-hero-item:active .overlay,
+.marquee-hero-item.touch-active .overlay {
+  opacity: 1;
+}
+
+.marquee-hero-item .overlay h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  transform: translateY(15px);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.marquee-hero-item:active .overlay h3,
+.marquee-hero-item.touch-active .overlay h3 {
+  transform: translateY(0);
+}
+
+.marquee-hero-item .overlay p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  transform: translateY(15px);
+  transition: transform 0.4s var(--ease-spring) 0.05s;
+}
+
+.marquee-hero-item:active .overlay p,
+.marquee-hero-item.touch-active .overlay p {
+  transform: translateY(0);
+}
+
+.marquee-hero-item .tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(236, 64, 122, 0.9);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s var(--ease-spring);
+}
+
+.marquee-hero-item:active .tag,
+.marquee-hero-item.touch-active .tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes marquee-hero-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-hero-controls {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.marquee-hero-controls button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.marquee-hero-controls button:active {
+  background: var(--pink-primary);
+  transform: scale(0.92);
+}
+
+/* ============================================================
+   STATS - Mobile First
+   ============================================================ */
+.stats-strip {
+  padding: var(--sp-4) 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-2);
+}
+
+.stat-card {
+  text-align: center;
+  padding: var(--sp-3) var(--sp-2);
+  border-radius: 16px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.4s var(--ease-spring);
+}
+
+.stat-card:active {
+  transform: scale(0.96);
+}
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--pink-primary), var(--pink-deep));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  color: var(--light-text);
+  font-size: clamp(0.75rem, 2vw, 0.95rem);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ============================================================
+   PROCESS HERO - Full Screen Background
+   ============================================================ */
+.process-hero-section {
+  padding: var(--sp-5) 0;
+  position: relative;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.process-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.process-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) saturate(0.7);
+}
+
+.process-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(216, 27, 96, 0.4), rgba(44, 26, 46, 0.6));
+  z-index: 1;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  position: relative;
+  z-index: 2;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: var(--sp-3);
+  text-align: center;
+  transition: all 0.4s var(--ease-spring);
+}
+
+.glass-card:active {
+  transform: scale(0.96);
+}
+
+.glass-card .process-icon {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--gold);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto var(--sp-2);
+  transition: all 0.4s ease;
+}
+
+.glass-card .process-index {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.glass-card h4 {
+  color: #fff;
+  margin: 6px 0;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
+
+.glass-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonial-carousel {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--sp-3);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+}
+
+.testimonial-track {
+  position: relative;
+  min-height: 200px;
+}
+
+.testimonial-card {
+  position: absolute;
+  inset: 0;
+  padding: var(--sp-3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px) scale(0.95);
+  transition: all 0.5s var(--ease-spring);
+}
+
+.testimonial-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.testimonial-quote-icon {
+  font-size: 2rem;
+  color: var(--pink-primary);
+  opacity: 0.3;
+}
+
+.testimonial-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--dark-text);
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dark-text);
+}
+
+.testimonial-role {
+  color: var(--light-text);
+  font-size: 0.85rem;
+}
+
+.testimonial-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  align-items: center;
+}
+
+.testimonial-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--dark-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.testimonial-arrow:active {
+  background: var(--pink-primary);
+  color: #fff;
+  transform: scale(0.92);
+}
+
+.testimonial-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.testimonial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--glass-border);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-spring);
+}
+
+.testimonial-dot.is-active {
+  background: var(--pink-primary);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   RESPONSIVE - Tablet & Up
+   ============================================================ */
+@media (min-width: 480px) {
+  .marquee-hero-item {
+    width: 260px;
+    height: 340px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding-top: 140px;
+    min-height: 100vh;
+  }
+
+  .hero-rule {
+    display: block;
+  }
+
+  .hero-top-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .hero-manifesto {
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .hero-bottom-row {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .hero-content {
+    padding: 8px 50px;
+  }
+
+  .hero-portrait-frame {
+    height: 74%;
+    max-height: 620px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-3);
+  }
+  
+  .stat-card {
+    padding: var(--sp-4) var(--sp-2);
+  }
+  
+  .process-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-3);
+  }
+  
+  .glass-card {
+    padding: var(--sp-4);
+  }
+  
+  .glass-card .process-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+  
+  .marquee-hero-item {
+    width: 320px;
+    height: 400px;
+  }
+  
+  .process-hero-section {
+    min-height: 80vh;
+    padding: var(--sp-6) 0;
+  }
+  
+  .marquee-hero-section {
+    padding: var(--sp-5) 0;
+  }
+  
+  .marquee-hero-wrapper {
+    margin: 0;
+  }
+  
+  .testimonial-carousel {
+    padding: var(--sp-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee-hero-item {
+    width: 360px;
+    height: 440px;
+  }
+
+  .hero-content {
+    padding: 8px 70px;
+  }
+
+  .hero-rule-left { left: 40px; }
+  .hero-rule-right { right: 40px; }
+
+  .hero-portrait-frame {
+    height: 82%;
+    max-height: 720px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE TRANSITION OVERLAY
+     ============================================================ -->
+<div class="page-transition" id="pageTransition"></div>
+
+<!-- ============================================================
+     LOADING SCREEN
+     ============================================================ -->
+<div id="loading-screen">
+  <div class="loading-text-container">
+    <span class="loading-word">From</span>
+    <span class="loading-word">Concepts</span>
+    <span class="loading-word">to</span>
+    <span class="loading-word">Goosebumps</span>
+  </div>
+  <div class="loading-subtitle">Ewuradjoa Badji · Media Producer</div>
+  <div class="loading-progress">
+    <div class="loading-progress-bar" id="loadingProgressBar"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CUSTOM CURSOR
+     ============================================================ -->
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<div class="navbar-container">
+  <nav class="liquid-nav" id="liquidNav">
+    <ul class="navbar-nav" id="navbarNav">
+      <li><a class="nav-link active" href="index.html"><i class="fas fa-home icon"></i> Home</a></li>
+      <li><a class="nav-link" href="work.html"><i class="fas fa-film icon"></i> Work</a></li>
+      <li><a class="nav-link" href="about.html"><i class="fas fa-user icon"></i> About</a></li>
+      <li><a class="nav-link nav-link-contact" href="contact.html"><i class="fas fa-envelope icon"></i> Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fas fa-bars icon"></i>
+    </button>
+  </nav>
+</div>
+
+<!-- ============================================================
+     HOME PAGE
+     ============================================================ -->
+<div class="page active" id="home-page">
+
+  <!-- HERO -->
+  <section class="hero-section" id="home">
+    <div class="hero-liquid-bg" aria-hidden="true">
+      <div class="liquid-blob liquid-blob-1"></div>
+      <div class="liquid-blob liquid-blob-2"></div>
+      <div class="liquid-blob liquid-blob-3"></div>
+    </div>
+    <div class="hero-portrait-wrap" aria-hidden="true">
+      <div class="hero-portrait-frame">
+        <img class="hero-portrait-img" src="assets/images/main%20image.png" alt="" loading="eager">
+      </div>
+    </div>
+    <div class="hero-rule hero-rule-left" aria-hidden="true"></div>
+    <div class="hero-rule hero-rule-right" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="hero-top-row">
+          <div class="hero-title-block">
+            <span class="hero-eyebrow">Media Producer</span>
+            <h1 class="hero-title">
+              <span class="hero-title-line">Story</span>
+              <span class="hero-title-line highlight">Teller</span>
+            </h1>
+          </div>
+
+          <aside class="hero-manifesto">
+            <span class="hero-manifesto-label">The Philosophy</span>
+            <p class="handwritten-tagline hero-manifesto-quote" id="handwrittenTagline">
+              <span class="handwritten-text">F</span>
+              <span class="handwritten-text">r</span>
+              <span class="handwritten-text">o</span>
+              <span class="handwritten-text">m</span>
+              <span class="handwritten-text">&nbsp;</span>
+              <span class="handwritten-text">C</span>
+              <span class="handwritten-text">o</span>
+              <span class="handwritten-text">n</span>
+              <span class="handwritten-text">c</span>
+              <span class="handwritten-text">e</span>
+              <span class="handwritten-text">p</span>
+              <span class="handwritten-text">t</span>
+              <span class="handwritten-text">s</span>
+              <span class="handwritten-text">&nbsp;</span>
+              <span class="handwritten-text">t</span>
+              <span class="handwritten-text">o</span>
+              <span class="handwritten-text">&nbsp;</span>
+              <span class="handwritten-text">G</span>
+              <span class="handwritten-text">o</span>
+              <span class="handwritten-text">o</span>
+              <span class="handwritten-text">s</span>
+              <span class="handwritten-text">e</span>
+              <span class="handwritten-text">b</span>
+              <span class="handwritten-text">u</span>
+              <span class="handwritten-text">m</span>
+              <span class="handwritten-text">p</span>
+              <span class="handwritten-text">s</span>
+            </p>
+          </aside>
+        </div>
+
+        <div class="hero-bottom-row">
+          <div class="hero-credentials">
+            <span class="hero-credentials-name">Ewuradjoa Badji</span>
+            <span class="hero-credentials-meta">Cinematography &middot; Editing &middot; Sound Design<br>Accra, Ghana</span>
+          </div>
+
+          <div class="hero-barcode-block">
+            <svg class="hero-barcode" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Barcode graphic">
+              <rect x="0" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="4" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="8" y="0" width="3" height="40" fill="#fff"/>
+              <rect x="13" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="17" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="21" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="25" y="0" width="4" height="40" fill="#fff"/>
+              <rect x="31" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="34" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="38" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="42" y="0" width="3" height="40" fill="#fff"/>
+              <rect x="47" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="51" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="55" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="59" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="63" y="0" width="3" height="40" fill="#fff"/>
+              <rect x="68" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="72" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="76" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="80" y="0" width="4" height="40" fill="#fff"/>
+              <rect x="86" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="90" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="94" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="98" y="0" width="3" height="40" fill="#fff"/>
+              <rect x="103" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="107" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="111" y="0" width="1" height="40" fill="#fff"/>
+              <rect x="115" y="0" width="2" height="40" fill="#fff"/>
+              <rect x="118" y="0" width="2" height="40" fill="#fff"/>
+            </svg>
+            <span class="hero-site-url">Media Producer &amp; Visual Storyteller</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <button class="scroll-cue" id="scrollCue" aria-label="Scroll to explore">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down icon"></i>
+    </button>
+  </section>
+
+  <!-- MARQUEE - Technology Focus Areas -->
+  <section class="marquee-section" aria-label="Technology focus areas">
+    <div class="marquee-content">
+      <div class="marquee-track" id="techMarquee">
+        <span class="marquee-item"><i class="fas fa-video"></i> Video Production</span>
+        <span class="marquee-item"><i class="fas fa-camera"></i> Cinematography</span>
+        <span class="marquee-item"><i class="fas fa-edit"></i> Video Editing</span>
+        <span class="marquee-item"><i class="fas fa-music"></i> Sound Design</span>
+        <span class="marquee-item"><i class="fas fa-paint-brush"></i> Color Grading</span>
+        <span class="marquee-item"><i class="fas fa-film"></i> Documentary</span>
+        <span class="marquee-item"><i class="fas fa-photo-video"></i> Motion Graphics</span>
+        <span class="marquee-item"><i class="fas fa-microphone"></i> Audio Production</span>
+        <span class="marquee-item"><i class="fas fa-video"></i> Video Production</span>
+        <span class="marquee-item"><i class="fas fa-camera"></i> Cinematography</span>
+        <span class="marquee-item"><i class="fas fa-edit"></i> Video Editing</span>
+        <span class="marquee-item"><i class="fas fa-music"></i> Sound Design</span>
+        <span class="marquee-item"><i class="fas fa-paint-brush"></i> Color Grading</span>
+        <span class="marquee-item"><i class="fas fa-film"></i> Documentary</span>
+        <span class="marquee-item"><i class="fas fa-photo-video"></i> Motion Graphics</span>
+        <span class="marquee-item"><i class="fas fa-microphone"></i> Audio Production</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE HERO - Portfolio Showcase -->
+  <section class="marquee-hero-section" id="work">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="section-eyebrow">Selected Work</span>
+        <h2 class="section-title">Creative <span class="highlight">Portfolio</span></h2>
+        <p class="section-lede">A collection of my most impactful media productions</p>
+      </div>
+    </div>
+
+    <div class="marquee-hero-wrapper">
+      <div class="marquee-hero-track" id="marqueeTrack">
+        <!-- Items injected by JS -->
+      </div>
+      <div class="marquee-hero-controls">
+        <button id="marqueePause" aria-label="Pause animation">
+          <i class="fas fa-pause"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number"><span class="stat-count" data-target="8">0</span><span>+</span></div>
+          <div class="stat-label">Years Behind the Lens</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number"><span class="stat-count" data-target="120">0</span><span>+</span></div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number"><span class="stat-count" data-target="15">0</span><span>+</span></div>
+          <div class="stat-label">Festivals Featured</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number"><span class="stat-count" data-target="4">0</span></div>
+          <div class="stat-label">Awards &amp; Honors</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="marquee-section" aria-label="Technology focus areas">
+    <div class="marquee-content">
+      <div class="marquee-track" id="techMarquee">
+        <span class="marquee-item"><i class="fas fa-video"></i> Video Production</span>
+        <span class="marquee-item"><i class="fas fa-camera"></i> Cinematography</span>
+        <span class="marquee-item"><i class="fas fa-edit"></i> Video Editing</span>
+        <span class="marquee-item"><i class="fas fa-music"></i> Sound Design</span>
+        <span class="marquee-item"><i class="fas fa-paint-brush"></i> Color Grading</span>
+        <span class="marquee-item"><i class="fas fa-film"></i> Documentary</span>
+        <span class="marquee-item"><i class="fas fa-photo-video"></i> Motion Graphics</span>
+        <span class="marquee-item"><i class="fas fa-microphone"></i> Audio Production</span>
+        <span class="marquee-item"><i class="fas fa-video"></i> Video Production</span>
+        <span class="marquee-item"><i class="fas fa-camera"></i> Cinematography</span>
+        <span class="marquee-item"><i class="fas fa-edit"></i> Video Editing</span>
+        <span class="marquee-item"><i class="fas fa-music"></i> Sound Design</span>
+        <span class="marquee-item"><i class="fas fa-paint-brush"></i> Color Grading</span>
+        <span class="marquee-item"><i class="fas fa-film"></i> Documentary</span>
+        <span class="marquee-item"><i class="fas fa-photo-video"></i> Motion Graphics</span>
+        <span class="marquee-item"><i class="fas fa-microphone"></i> Audio Production</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS HERO - Full Screen Background -->
+  <section class="process-hero-section" id="process">
+    <div class="process-hero-bg">
+      <video class="process-bg-video" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/videos/process-bg.mp4" type="video/mp4">
+      </video>
+      <div class="process-overlay"></div>
+    </div>
+    
+    <div class="container">
+      <div class="section-head center reveal" style="color:#fff;">
+        <span class="section-eyebrow" style="color:var(--gold);">How It Comes Together</span>
+        <h2 class="section-title" style="color:#fff;">From Concept to <span style="background:linear-gradient(135deg, var(--gold), var(--pink-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Goosebumps</span></h2>
+        <p class="section-lede" style="color:rgba(255,255,255,0.8);">Every project follows the same thread, start to finish</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="glass-card reveal">
+          <div class="process-icon"><i class="fas fa-lightbulb"></i></div>
+          <div class="process-index">Step 01</div>
+          <h4>Concept</h4>
+          <p>Understanding the story worth telling</p>
+        </div>
+        <div class="glass-card reveal">
+          <div class="process-icon"><i class="fas fa-camera"></i></div>
+          <div class="process-index">Step 02</div>
+          <h4>Shoot</h4>
+          <p>On-set direction that balances plan with spontaneity</p>
+        </div>
+        <div class="glass-card reveal">
+          <div class="process-icon"><i class="fas fa-cut"></i></div>
+          <div class="process-index">Step 03</div>
+          <h4>Edit</h4>
+          <p>Shaping footage, sound, and pace into rhythm</p>
+        </div>
+        <div class="glass-card reveal">
+          <div class="process-icon"><i class="fas fa-box"></i></div>
+          <div class="process-index">Step 04</div>
+          <h4>Deliver</h4>
+          <p>Polished, platform-ready, exactly how you need it</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="section-eyebrow">Kind Words</span>
+        <h2 class="section-title">From the <span class="highlight">Clients</span></h2>
+      </div>
+
+      <div class="testimonial-carousel reveal">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-card is-active">
+            <i class="fas fa-quote-right testimonial-quote-icon"></i>
+            <p class="testimonial-quote">"Ewuradjoa turned a two-line brief into a film our whole team got emotional watching."</p>
+            <div class="testimonial-name">Maya Owusu</div>
+            <div class="testimonial-role">Creative Director, NexTech</div>
+          </div>
+          <div class="testimonial-card">
+            <i class="fas fa-quote-right testimonial-quote-icon"></i>
+            <p class="testimonial-quote">"The only production team that made our annual report something people actually wanted to watch."</p>
+            <div class="testimonial-name">Daniel Frimpong</div>
+            <div class="testimonial-role">Head of Communications, Aurelia Group</div>
+          </div>
+          <div class="testimonial-card">
+            <i class="fas fa-quote-right testimonial-quote-icon"></i>
+            <p class="testimonial-quote">"The Last Light wouldn't be the film it is without her eye for pacing."</p>
+            <div class="testimonial-name">Nana Adjei</div>
+            <div class="testimonial-role">Independent Filmmaker</div>
+          </div>
+        </div>
+        <div class="testimonial-controls">
+          <button class="testimonial-arrow" id="testimonialPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <div class="testimonial-dots" id="testimonialDots"></div>
+          <button class="testimonial-arrow" id="testimonialNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Ewuradjoa Badji</h4>
+          <p>Producer, Marketing Executive, Project Manager &amp; Event Management</p>
+        </div>
+        <div class="footer-links">
+          <h6>Explore</h6>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h6>Follow Along</h6>
+          <div class="social-links">
+            <a href="https://www.instagram.com/ewuradjoa_badji/" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ewuradjoa-badji-125159168/" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2023 Ewuradjoa Badji Media. All rights reserved.</span>
+        <span>From Concepts to Goosebumps&trade;</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Shared JavaScript -->
+<script src="js/main.js"></script>
+</body>
+</html>
